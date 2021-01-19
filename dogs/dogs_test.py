@@ -1,20 +1,13 @@
 from dogs.breed_list_func import *
 import re
 
-# with open(os.path.join(os.path.dirname(os.path.abspath(__file__)),'breеd_list.json'), 'r') as breeds:
-#     breeds_all = breeds.read()
-#     breeds_list = loads(breeds_all)
-
 
 # проверка возвращаемого списка пород
 def test_check_breeds_list():
     ap = dogs_api()
     res = ap.text_dict(path=list_all)
     breed_list_dict = res.get("message")
-    #print(breed_list_dict)
-    breed_list = list(breed_list_dict.keys())
     breeds_list = open_read('dogs/breеd_list.json')
-    #print(breeds_list)
     assert breed_list_dict == breeds_list
 
 
