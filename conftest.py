@@ -9,6 +9,17 @@ def api_client(requests):
     return APIClient(base_address=base_url)
 
 
+def api_client_base(path):
+    return APIClient(base_address=path)
+
+
+def open_read(file_name):
+    with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), file_name), 'r') as result:
+        res = result.read()
+        res_list = loads(res)
+        return res_list
+
+
 def pytest_addoption(parser):
     parser.addoption(
         "--url",

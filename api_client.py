@@ -28,4 +28,12 @@ class APIClient:
             res = requests.get(url)
             return str(res.status_code)
 
-
+    # метод возвращает текст , полученной при отправке запроса по заданному url'у в виде json
+    def text_dict(self, path="/"):
+        url = self.base_address + path
+        print(url)
+        http = urllib3.PoolManager()
+        resp = http.request('get', url)
+        print(resp.data)
+        resp_dict = json.loads(resp.data)
+        return resp_dict
