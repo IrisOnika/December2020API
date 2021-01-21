@@ -1,14 +1,14 @@
 {
-    "id": {"type": "number"},
+    "id": {"type": "integer"},
     "name": {"type": "string"},
     "brewery_type": {"type": "string"},
     "street": {"type": "string"},
-    "address2": {"nullable": true, "type": "string"},
-    "address3": {"nullable": true, "type": "string"},
-    "city": {"type": "list"},
+    "address_2": {"nullable": true, "type": "string"},
+    "address_3": {"nullable": true, "type": "string"},
+    "city": {"type": "string"},
     "state": {"type": "string"},
-    "country_province": {"nullable": true, "type": "string"},
-    "postal_code": {"type": "list", },
+    "county_province": {"nullable": true, "type": "string"},
+    "postal_code": {"type": "string"},
     "country": {"type": "string"},
     "longitude": {"type": "string"},
     "latitude": {"type": "string"},
@@ -16,4 +16,4 @@
     "website_url": {"type": "string"},
     "updated_at": {"type": "string"},
     "created_at": {"type": "string"}
-  }
+}

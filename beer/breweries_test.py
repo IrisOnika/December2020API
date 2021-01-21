@@ -3,17 +3,14 @@ import re
 import cerberus
 
 #проверка схемы пивоварни
-### ТРЕБУЕТ ДОРАБОТКИ!
-# не удалось разобраться, почему проверка схемы не работает =(
 @pytest.mark.parametrize('number', ['/1', '/777'])
 def test_check_breweries_schema(number):
     ap = brewer_api()
     res = ap.text_dict(path=number)
     print(res)
-    #schema = open_read('beer/schema_brewery.json')
-    schema = open_read('beer/schema_pivo_updated.json')
-    v = cerberus.Validator()
-    assert v.validate(res, schema)
+    schema = open_read('beer/schema_brewery.json')
+    v = cerberus.Validator(schema)
+    assert v.validate(res)
 
 @pytest.mark.parametrize(('page_num', 'count'),
                          [
@@ -70,7 +67,16 @@ def test_check_brewer_search(search):
             assert count == 0
 
 
-
+# тест про схему ответа при автокомплите
+@pytest.mark.parametrize('search', ['Fat Orange Cat'])
+def test_autocomplete_schema(search):
+    ap = brewer_api()
+    res = ap.text_dict(path=f'{autocomplete_query}{search}')[0]
+    print(res)
+    schema = open_read('beer/schema_autocomplete.json')
+    print(schema)
+    v = cerberus.Validator(schema)
+    assert v.validate(res)
 
 
 
