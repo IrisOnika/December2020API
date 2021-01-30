@@ -2,6 +2,7 @@ import requests
 import urllib3
 import json
 
+
 class APIClient:
     """
     Упрощённый клиент для работы с API
@@ -24,7 +25,7 @@ class APIClient:
     def status(self, path="/", meth="get"):
         url = self.base_address + path
         if meth == "get":
-            #'фиксируем' объект
+            # 'фиксируем' объект
             res = requests.get(url)
             return str(res.status_code)
 
