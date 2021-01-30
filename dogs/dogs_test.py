@@ -37,10 +37,7 @@ def test_breed_links_count(count, result):
     ap = dogs_api()
     res = ap.text_dict(path=random1 + '/' + count)
     links = res.get("message")
-    i = 0
-    for link in links:
-        i += 1
-    assert i == result
+    assert len(links) == result
 
 
 # Проверка того, что метод с указанной породой возвращает ссылки на фото собак указанной в методе породы.
