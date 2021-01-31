@@ -1,4 +1,6 @@
 from dogs.breed_list_func import *
+from conftest import open_read
+import pytest
 import re
 
 

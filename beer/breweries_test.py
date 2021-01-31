@@ -1,4 +1,6 @@
 import cerberus
+import pytest
+from conftest import open_read
 from beer.breweries_func import *
 
 
@@ -69,10 +71,11 @@ def test_check_brewer_search(search):
             assert count == 0
 
 
+# тест про схему ответа при автокомплите
 # Баг (или фича). id в выводе имеет тип 'string'. id в других методах имеет тип 'integer'
 @pytest.mark.parametrize('search', ['Fat Orange Cat', 'Mew'])
 def test_autocomplete_schema(search):
-    """проверка схемы при автокомплите"""
+    """"""
     ap = brewer_api()
     res = ap.text_dict(path=f'{autocomplete_query}{search}')
     schema = open_read('beer/schema_autocomplete.json')
