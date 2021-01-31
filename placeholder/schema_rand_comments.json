@@ -1,0 +1,7 @@
+{
+    "postId": {"type": "integer"},
+    "id": {"type": "integer"},
+    "name": {"type": "string"},
+    "email": {"type": "string"},
+    "body": {"type": "string"}
+}

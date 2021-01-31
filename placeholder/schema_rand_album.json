@@ -1,0 +1,5 @@
+{
+    "userId": {"type": "integer"},
+    "id": {"type": "integer"},
+    "title": {"type": "string"}
+}
