@@ -133,3 +133,5 @@ dmypy.json
 /.idea/modules.xml
 /.idea/inspectionProfiles/profiles_settings.xml
 /.idea/vcs.xml
+/.idea/.name
+/.idea/December2020API_fu.iml

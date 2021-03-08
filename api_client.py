@@ -12,15 +12,25 @@ class APIClient:
     def __init__(self, base_address):
         self.base_address = base_address
 
-    def post(self, path="/", params=None, data=None, headers=None):
+    def post(self, path="/", params=None, data=None, json=None, headers=None):
         url = self.base_address + path
         print("Post request to {}".format(url))
-        return requests.post(url=url, params=params, data=data, headers=headers)
+        return requests.post(url=url, params=params, data=data, json=json, headers=headers)
 
     def get(self, path="/", params=None):
         url = self.base_address + path
         print("Get request to {}".format(url))
         return requests.get(url=url, params=params)
+
+    def update(self, path="/", params=None, data=None, json=None):
+        url = self.base_address + path
+        print("Update request to {}".format(url))
+        return requests.put(url=url, params=params, data=data, json=json)
+
+#    def ph_delete(self, path="/posts/", id="101"):
+#        url = self.base_address + path + id
+#        print("Get request to {}".format(url))
+#        return requests.delete(url=url)
 
     def status(self, path="/", meth="get"):
         url = self.base_address + path

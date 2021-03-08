@@ -1,12 +1,13 @@
 from conftest import api_client_base
-# import pytest
+from conftest import open_read
 import random
+import pytest
 
 rand = str(random.randint(1, 100))
 
 host = 'https://jsonplaceholder.typicode.com'
 rand_pst = f'/posts/{rand}'
-host_ = f'{host}/posts/'
+posts = f'/posts/'
 rand_comments = f'{rand_pst}/comments'
 rand_photos = f'/albums/{rand}/photos'
 rand_album = f'/users/{rand}/albums'
@@ -23,10 +24,17 @@ schema_list = [(rand_pst, 'rand_pst'),
                (rand_todo, 'rand_todo'),
                (rand_user_posts, 'rand_user_posts')]
 
+headers_create = {'Content-type': 'application/json; charset=UTF-8'}
 
+new_placeholder = open_read(f'placeholder/new_placeholder.json')
+update_placeholder = open_read(f'placeholder/update_placeholder.json')
+
+
+@pytest.fixture(scope="session")
 def placeholder_api(path=host):
     ap = api_client_base(path)
     return ap
+
 
 #@pytest.fixture()
 #def create_placeholder(paht, body, )
