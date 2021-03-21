@@ -30,11 +30,7 @@ new_placeholder = open_read(f'placeholder/new_placeholder.json')
 update_placeholder = open_read(f'placeholder/update_placeholder.json')
 
 
-@pytest.fixture(scope="session")
+@pytest.fixture
 def placeholder_api(path=host):
     ap = api_client_base(path)
     return ap
-
-
-#@pytest.fixture()
-#def create_placeholder(paht, body, )
