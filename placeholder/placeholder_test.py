@@ -1,7 +1,6 @@
 from placeholder.placeholder_func import *
 from conftest import open_read
 import cerberus
-import re
 import pytest
 
 
@@ -48,5 +47,4 @@ def test_update(placeholder_api, p_id, stat, exp_res):
 def test_delete(placeholder_api):
     """тест на удаление записи метод delete"""
     ph_detete = placeholder_api.ph_delete()
-    print(f'результат удаления записи: {ph_detete.json()}')
     assert ph_detete.json() == {}

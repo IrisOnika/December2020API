@@ -4,7 +4,7 @@ from conftest import open_read
 from beer.breweries_func import *
 
 
-@pytest.mark.parametrize('number', ['/1', '/777'], ids=["brewery_No1", "brewery_No777"])
+@pytest.mark.parametrize('number', ['/8044', '/8047'], ids=["brewery_No8044", "brewery_No8047"])
 def test_check_breweries_schema(number):
     """проверка схемы пивоварни"""
     ap = brewer_api()
@@ -20,10 +20,10 @@ def test_check_breweries_schema(number):
                              # кейсы для номера вызываемой страницы
                              ('0', 20),
                              ('1', 20),
-                             ('401', 20),
+                             ('393', 20),
                              # для текущего состояния базы (текущего кол-ва пивоварен)
-                             ('402', 12),
-                             ('403', 0)
+                             ('394', 2),
+                             ('395', 0)
                          ])
 def test_check_brewer_page_num(page_num, count):
     """проверка кол-ва пивоварен на странице+общее кол-во пивоварен на текущее состояние базы"""

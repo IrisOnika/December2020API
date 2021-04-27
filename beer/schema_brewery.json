@@ -1,5 +1,6 @@
 {
     "id": {"type": "integer"},
+    "obdb_id": {"type": "string"},
     "name": {"type": "string"},
     "brewery_type": {"type": "string"},
     "street": {"type": "string"},
@@ -10,8 +11,8 @@
     "county_province": {"nullable": true, "type": "string"},
     "postal_code": {"type": "string"},
     "country": {"type": "string"},
-    "longitude": {"type": "string"},
-    "latitude": {"type": "string"},
+    "longitude": {"nullable": true, "type": "string"},
+    "latitude": {"nullable": true, "type": "string"},
     "phone": {"type": "string"},
     "website_url": {"type": "string"},
     "updated_at": {"type": "string"},
