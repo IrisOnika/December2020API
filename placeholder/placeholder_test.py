@@ -45,8 +45,8 @@ def test_update(placeholder_api, p_id, stat, exp_res):
         assert ph_update.json() == exp_res
 
 
-def test_delete():
+def test_delete(placeholder_api):
     """тест на удаление записи метод delete"""
-
-
-    pass
+    ph_detete = placeholder_api.ph_delete()
+    print(f'результат удаления записи: {ph_detete.json()}')
+    assert ph_detete.json() == {}

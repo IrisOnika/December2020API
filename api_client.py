@@ -27,10 +27,10 @@ class APIClient:
         print("Update request to {}".format(url))
         return requests.put(url=url, params=params, data=data, json=json)
 
-#    def ph_delete(self, path="/posts/", id="101"):
-#        url = self.base_address + path + id
-#        print("Get request to {}".format(url))
-#        return requests.delete(url=url)
+    def ph_delete(self, path="/posts/", id="1"):
+        url = self.base_address + path + id
+        print("Delete request to {}".format(url))
+        return requests.delete(url=url)
 
     def status(self, path="/", meth="get"):
         url = self.base_address + path
