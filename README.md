@@ -11,4 +11,4 @@
 Содержит тесты REST API сервиса:  https://jsonplaceholder.typicode.com/.
 5. **api_client.py**
 Клиент для работы с API
-6. **conftest**
+6. **conftest.py**
