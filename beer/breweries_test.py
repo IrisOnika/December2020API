@@ -1,14 +1,12 @@
 import cerberus
-import pytest
 from conftest import open_read
 from beer.breweries_func import *
 
 
 @pytest.mark.parametrize('number', ['/8044', '/8047'], ids=["brewery_No8044", "brewery_No8047"])
-def test_check_breweries_schema(number):
+def test_check_breweries_schema(brewer_api, number):
     """проверка схемы пивоварни"""
-    ap = brewer_api()
-    res = ap.text_dict(path=number)
+    res = brewer_api.text_dict(path=number)
     print(res)
     schema = open_read('beer/schema_brewery.json')
     v = cerberus.Validator(schema)
@@ -25,10 +23,9 @@ def test_check_breweries_schema(number):
                              ('394', 2),
                              ('395', 0)
                          ])
-def test_check_brewer_page_num(page_num, count):
+def test_check_brewer_page_num(brewer_api, page_num, count):
     """проверка кол-ва пивоварен на странице+общее кол-во пивоварен на текущее состояние базы"""
-    ap = brewer_api()
-    res = ap.text_dict(path=f'?page={page_num}')
+    res = brewer_api.text_dict(path=f'?page={page_num}')
     assert len(res) == count
 
 
@@ -37,10 +34,9 @@ def test_check_brewer_page_num(page_num, count):
                                                  ('1', 1),
                                                  ('50', 50),
                                                  ('51', 50)])
-def test_check_brewer_per_page(per_page, count):
+def test_check_brewer_per_page(brewer_api, per_page, count):
     """проверка возможности вывыодить разное кол-во пивоварен на странице"""
-    ap = brewer_api()
-    res = ap.text_dict(path=f'?per_page={per_page}')
+    res = brewer_api.text_dict(path=f'?per_page={per_page}')
     assert len(res) == count
 
 
@@ -51,10 +47,9 @@ def test_check_brewer_per_page(per_page, count):
                                                  marks=pytest.mark.xfail(
                                                      reason='bug? can not find cat in one of returned string')),
                                     'should not get result'])
-def test_check_brewer_search(search):
+def test_check_brewer_search(brewer_api, search):
     """проверка: если пивоварня нашлась по набору символов, то этот набор попадёт в одно из полей строки вывода"""
-    ap = brewer_api()
-    res = ap.text_dict(path=f'{search_query}{search}')
+    res = brewer_api.text_dict(path=f'{search_query}{search}')
     for item in res:
         print(item.get("id"))
         count = 0
@@ -74,10 +69,9 @@ def test_check_brewer_search(search):
 # тест про схему ответа при автокомплите
 # Баг (или фича). id в выводе имеет тип 'string'. id в других методах имеет тип 'integer'
 @pytest.mark.parametrize('search', ['Fat Orange Cat', 'Mew'])
-def test_autocomplete_schema(search):
+def test_autocomplete_schema(brewer_api, search):
     """"""
-    ap = brewer_api()
-    res = ap.text_dict(path=f'{autocomplete_query}{search}')
+    res = brewer_api.text_dict(path=f'{autocomplete_query}{search}')
     schema = open_read('beer/schema_autocomplete.json')
     v = cerberus.Validator(schema)
     for res_item in res:
